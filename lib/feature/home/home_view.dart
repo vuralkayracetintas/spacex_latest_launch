@@ -5,9 +5,14 @@ import 'package:spacex_latest_launch/bloc/spacex_events.dart';
 import 'package:spacex_latest_launch/bloc/spacex_states.dart';
 import 'package:spacex_latest_launch/product/repository/spacex_repositorty.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -48,52 +53,45 @@ class _LaunchDetailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: SizedBox(
-        width: size.width * .9,
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
+    print(state.spacexModel.links.webcast);
+    print(state.spacexModel.links.reddit.launch);
+    print(state.spacexModel.details);
+    print(state.spacexModel.links.flickr.original.length);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ListView.builder(
+          itemCount: state.spacexModel.crew.length,
+          itemBuilder: (context, index) {
+            final crewMember = state.spacexModel.crew[index];
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Center(
-                  child: Image.network(state.spacexModel.links.patch.small,
+                  child: Image.network(state.spacexModel.links.patch.large,
                       width: 170, height: 170),
                 ),
                 Center(
-                  child: Text(
-                    state.spacexModel.name,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 3,
-                    ),
+                  child: Column(
+                    children: [
+                      Text(
+                        state.spacexModel.name, // modelname,
+                      ),
+                      Text(state.spacexModel.dateLocal.toString()),
+                      Text(state.spacexModel.dateUtc.toString()),
+                      Text(state.spacexModel.links.webcast),
+                      Text(state.spacexModel.links.patch.small),
+                      Text(state.spacexModel.links.reddit.launch),
+                      //Text(state.spacexModel.links.reddit.media), // null
+                      //Text(state.spacexModel.launch.toString()), // null
+                      //Text(state.spacexModel.links.flickr.original[index])
+                      Text("Crew Member: $crewMember"),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 16),
-                if (state.spacexModel.details != null)
-                  Text(state.spacexModel.details!),
-                if (state.spacexModel.links.flickr.original.isNotEmpty)
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        final url =
-                            state.spacexModel.links.flickr.original[index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.network(url, fit: BoxFit.cover),
-                        );
-                      },
-                      itemCount: state.spacexModel.links.flickr.original.length,
-                    ),
-                  )
               ],
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

@@ -35,4 +35,5 @@ class StringConstans {
   static const String spacemanImage = 'assets/images/spaceman.png';
 
   static const String errorLoadData = 'Error loading data';
+  static const String detaildValueNot = "Detail Values Not Found";
 }

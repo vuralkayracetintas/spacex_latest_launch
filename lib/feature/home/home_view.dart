@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:kartal/kartal.dart';
 import 'package:spacex_latest_launch/bloc/spacex_bloc.dart';
 import 'package:spacex_latest_launch/bloc/spacex_events.dart';
 import 'package:spacex_latest_launch/bloc/spacex_states.dart';
@@ -28,7 +30,12 @@ class _HomeViewState extends State<HomeView> {
       )..add(LoadSpacexData()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(StringConstans.appBarTitle),
+          title: Text(StringConstans.appBarTitle,
+              style: GoogleFonts.raleway(
+                textStyle: context.general.textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
         ),
         body: BlocBuilder<SpacexBloc, SpacexStates>(
           builder: (BuildContext context, state) {

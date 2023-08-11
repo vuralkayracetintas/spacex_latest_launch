@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
 import 'package:spacex_latest_launch/bloc/spacex_states.dart';
 import 'package:spacex_latest_launch/feature/widgets/custom_circle_progress.dart';
@@ -51,12 +52,23 @@ class _HomePageState extends State<HomePage> {
                     Image.network(
                       widget.state.spacexModel.links.patch.small,
                     ),
-                    Text(widget.state.spacexModel.name,
-                        style: context.general.textTheme.displayMedium!
-                            .copyWith(fontFamily: 'Schyler')),
                     Text(
-                      'Crew- 5',
-                      style: TextStyle(fontFamily: 'Schyler'),
+                      widget.state.spacexModel.name,
+                      style: GoogleFonts.raleway(
+                        textStyle:
+                            context.general.textTheme.displayMedium!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      widget.state.spacexModel.details == null
+                          ? StringConstans.detaildValueNot
+                          : widget.state.spacexModel.details!,
+                      style: GoogleFonts.raleway(
+                        textStyle:
+                            context.general.textTheme.titleMedium!.copyWith(),
+                      ),
                     ),
                     for (crewMember in widget.state.spacexModel.crew)
                       Row(
@@ -72,17 +84,31 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(
                             width: widget.size.width * 0.05,
                           ),
-                          Text(crewMember),
+                          Text(
+                            crewMember,
+                            style: GoogleFonts.raleway(
+                              textStyle: context.general.textTheme.titleMedium!
+                                  .copyWith(),
+                            ),
+                          ),
                         ],
                       ),
                     Text(
-                      '${StringConstans.date}${extractDate(widget.state.spacexModel.dateUtc.toString())}',
-                      style: context.general.textTheme.titleLarge,
-                    ),
+                        '${StringConstans.date}${extractDate(widget.state.spacexModel.dateUtc.toString())}',
+                        style: GoogleFonts.raleway(
+                          textStyle:
+                              context.general.textTheme.titleLarge!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
                     Text(
-                      '${StringConstans.flightNumber} ${widget.state.spacexModel.flightNumber.toString()}',
-                      style: context.general.textTheme.titleLarge,
-                    ),
+                        '${StringConstans.flightNumber} ${widget.state.spacexModel.flightNumber.toString()}',
+                        style: GoogleFonts.raleway(
+                          textStyle:
+                              context.general.textTheme.titleLarge!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
                     CustomTextLink(
                       buttonText: StringConstans.buttonTextReddit,
                       url: urlReddit,

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kartal/kartal.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,10 +23,12 @@ class CustomTextLink extends StatelessWidget {
       padding: context.padding.low,
       child: Row(
         children: [
-          Text(
-            titleText,
-            style: context.general.textTheme.titleLarge,
-          ),
+          Text(titleText,
+              style: GoogleFonts.raleway(
+                textStyle: context.general.textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
           TextButton(
             onPressed: () async {
               await urlLauncher._launchUrl(url);

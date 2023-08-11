@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spacex_latest_launch/feature/home/home_view.dart';
-import 'package:spacex_latest_launch/product/repository/spacex_repositorty.dart';
+import 'package:spacex_latest_launch/feature/splash/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        theme: ThemeData.dark(
           useMaterial3: true,
         ),
-        home: RepositoryProvider(
-            create: (context) => SpacexRepository(), child: const HomeView()));
+        home: const SplashPage());
   }
 }

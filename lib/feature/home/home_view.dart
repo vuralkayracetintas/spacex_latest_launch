@@ -1,15 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:spacex_latest_launch/bloc/spacex_bloc.dart';
 import 'package:spacex_latest_launch/bloc/spacex_events.dart';
 import 'package:spacex_latest_launch/bloc/spacex_states.dart';
 import 'package:spacex_latest_launch/feature/home/home_page.dart';
+import 'package:spacex_latest_launch/feature/widgets/custom_circle_progress.dart';
 import 'package:spacex_latest_launch/product/constans/string_constans.dart';
 import 'package:spacex_latest_launch/product/repository/spacex_repositorty.dart';
 
-int counter = 0;
+int index = 0;
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -19,19 +19,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // Future<void> _refresh() async {
-  //   try {
-  //     await Future.delayed(const Duration(seconds: 2));
-
-  //     print('update data');
-  //     setState(() {
-  //       counter++;
-  //     });
-  //   } catch (error) {
-  //     debugPrint('${StringConstans.refleshError} $error');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -48,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
             debugPrint('state: ${state.runtimeType}');
 
             if (state is SpacexInitialState || state is SpacexLoadingState) {
-              return const CircularProgressIndicator();
+              const CustomCircleProgress();
             } else if (state is SpacexErrorState) {
               debugPrint('error : ${state.message}');
               return Text('Getting Error: ${state.message}');
@@ -61,6 +48,7 @@ class _HomeViewState extends State<HomeView> {
                   child: HomePage(
                     size: size,
                     state: state,
+                    index: index,
                   ));
             }
             return const SizedBox.shrink();

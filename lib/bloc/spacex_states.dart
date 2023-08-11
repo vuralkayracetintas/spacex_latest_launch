@@ -29,6 +29,8 @@ class SpacexLoadedState extends SpacexStates {
   List<Object?> get props => [spacexModel];
 }
 
+//data error
+
 class SpacexErrorState extends SpacexStates {
   const SpacexErrorState(this.message);
   final String message;
@@ -36,6 +38,3 @@ class SpacexErrorState extends SpacexStates {
   @override
   List<Object?> get props => [message];
 }
-
-
-//data error

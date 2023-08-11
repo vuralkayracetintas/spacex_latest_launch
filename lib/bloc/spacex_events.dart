@@ -6,5 +6,5 @@ abstract class SpacexEvents extends Equatable {
 
 class LoadSpacexData extends SpacexEvents {
   @override
-  List<Object?> get props => []; //! ?
+  List<Object?> get props => [];
 }

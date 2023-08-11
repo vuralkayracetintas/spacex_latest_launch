@@ -177,6 +177,26 @@ class Core {
       };
 }
 
+class Crew {
+  String crew;
+  String role;
+
+  Crew({
+    required this.crew,
+    required this.role,
+  });
+
+  factory Crew.fromMap(Map<String, dynamic> json) => Crew(
+        crew: json["crew"],
+        role: json["role"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "crew": crew,
+        "role": role,
+      };
+}
+
 class Links {
   Patch patch;
   Reddit reddit;

@@ -112,6 +112,7 @@ class _LaunchDetailCard extends StatelessWidget {
                   Text(state.spacexModel.links.webcast),
                   Text(state.spacexModel.links.patch.small),
                   Text(state.spacexModel.links.reddit.launch),
+                  Text(state.spacexModel.crew[0]),
 
                   //Text(state.spacexModel.links.reddit.media), // null
                   //Text(state.spacexModel.launch.toString()), // null

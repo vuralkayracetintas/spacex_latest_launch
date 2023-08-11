@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kartal/kartal.dart';
 
 import 'package:spacex_latest_launch/bloc/spacex_bloc.dart';
 import 'package:spacex_latest_launch/bloc/spacex_events.dart';
 import 'package:spacex_latest_launch/bloc/spacex_states.dart';
+import 'package:spacex_latest_launch/feature/home/home_page.dart';
 import 'package:spacex_latest_launch/product/constans/string_constans.dart';
 import 'package:spacex_latest_launch/product/repository/spacex_repositorty.dart';
 
@@ -58,69 +58,13 @@ class _HomeViewState extends State<HomeView> {
                     BlocProvider.of<SpacexBloc>(context).add(LoadSpacexData());
                   },
                   //_refresh,
-                  child: _LaunchDetailCard(
+                  child: HomePage(
                     size: size,
                     state: state,
                   ));
             }
             return const SizedBox.shrink();
           },
-        ),
-      ),
-    );
-  }
-}
-
-class _LaunchDetailCard extends StatelessWidget {
-  const _LaunchDetailCard({
-    Key? key,
-    required this.size,
-    required this.state,
-  }) : super(key: key);
-
-  final Size size;
-  final SpacexLoadedState state;
-
-  @override
-  Widget build(BuildContext context) {
-    // print(state.spacexModel.links.webcast);
-    // print(state.spacexModel.links.reddit.launch);
-    // print(state.spacexModel.details);
-    // print(state.spacexModel.links.flickr.original.length);
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('${StringConstans.refleshed} $counter'),
-            Center(
-              child: Image.network(
-                state.spacexModel.links.patch.small,
-              ),
-            ),
-            Center(
-              child: Column(
-                // final crewMember = state.spacexModel.crew[index];
-                children: [
-                  Text(
-                    state.spacexModel.name, // modelname,
-                    style: context.general.textTheme.displayMedium,
-                  ),
-                  Text(state.spacexModel.dateLocal.toString()),
-                  Text(state.spacexModel.dateUtc.toString()),
-                  Text(state.spacexModel.links.webcast),
-                  Text(state.spacexModel.links.patch.small),
-                  Text(state.spacexModel.links.reddit.launch),
-
-                  //Text(state.spacexModel.links.reddit.media), // null
-                  //Text(state.spacexModel.launch.toString()), // null
-                  //Text(state.spacexModel.links.flickr.original[index])
-                  // Text("${StringConstans.crewMember} :  $crewMember"),
-                ],
-              ),
-            ),
-          ],
         ),
       ),
     );

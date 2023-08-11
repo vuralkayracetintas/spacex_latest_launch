@@ -36,4 +36,8 @@ class StringConstans {
 
   static const String errorLoadData = 'Error loading data';
   static const String detaildValueNot = "Detail Values Not Found";
+
+
+
+  
 }
